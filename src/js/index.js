@@ -4,7 +4,9 @@ import $ from 'jquery';
 
 import form_data from './users';
 
-import { makeTextInputs } from './templates'; 
+import { makeTextInputs, makeLang, makeTextArea } from './templates'; 
+
+var $app = $('.app');
 
 // put data to page 
 // users array: direct text, select and textarea objects
@@ -14,9 +16,18 @@ import { makeTextInputs } from './templates';
 
 form_data.forEach(function(datum) {
 
-	if (form_data.type === "text" || form_data.type === "email" || form_data.type === "tel") {
+	var template; 
+
+	if (datum.type === "text" || datum.type === "email" || datum.type === "tel") {
 		template = makeTextInputs;
+	} else if (datum.type === "select") {
+		template = makeLang;
+	} else {
+		template = makeTextArea;
 	}
+
+	var display = template(datum);
+  	$app.append(display);
 
 });
 
@@ -33,19 +44,19 @@ form_data.forEach(function(datum) {
 //   $app.append( html );
 // });
 
-var $app = $('.app');
+// var $app = $('.app');
 
-var userTypeToTemplate = {
-  'Manager': manager,
-  'Employee': employee,
-  'Customer': customer
-}
+// var userTypeToTemplate = {
+//   'Manager': manager,
+//   'Employee': employee,
+//   'Customer': customer
+// }
 
-users.forEach(function(user) {
-  var template = userTypeToTemplate[user.type];
-  var html = template(user);
-  $app.append( html );
-});
+// users.forEach(function(user) {
+//   var template = userTypeToTemplate[user.type];
+//   var html = template(user);
+//   $app.append( html );
+// });
 
 
 
