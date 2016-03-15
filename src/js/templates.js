@@ -1,10 +1,11 @@
 export function makeTextInputs(input) {
 
-return 
+			return 
 			`
-			<label for="${input.id}"></label>
+			<label for="${input.id}"> </label>
 			<input type="text" id="${input.id}" placeholder="${input.label}"><br>
 			`
+
 };
 
 export function selectBox(language){
@@ -16,9 +17,12 @@ export function selectBox(language){
 		`
 		<label for="${lang.value}"></label>
 		<select id="${lang.value}">
-		<option value="${lang.value}">${lang.label}</Option>
+		<option value="${lang.value}">${lang.label}</option>
+
 		`
+		//select tag, look @ lang stuff
 	});
+};
 
 export function makeTextArea(input) {
 	return 
